@@ -14,4 +14,4 @@ Electronic ticketing system which will allow putco commuters to refill their bus
 
 ### To Run Tests for the USSD
 
-* To run all the unittests: `python3 -m unittest tests/test_putco.py`
+* To run all the unittests: `python3 -m unittest test_putco.py`
