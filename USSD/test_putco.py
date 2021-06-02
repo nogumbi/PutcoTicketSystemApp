@@ -13,6 +13,6 @@ class Test(unittest.TestCase):
        for i in range(100):
             code = putcoussd.create_pin()
             self.assertEqual(len(code), 5)
-            
+
 if __name__ == '__main__':
     unittest.main()
