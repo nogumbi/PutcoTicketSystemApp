@@ -1,8 +1,10 @@
 import json
 import os
+import time
 
 # Stores data of the person
 storage_file = open("data.json", "r+")
+
 
 dict_ = {}
 
@@ -43,15 +45,16 @@ def options(phone_number, pin):
     Options available
     """
     menu = int(input("""Main menu: \n
-    1. Register
-    2. Login
+    1. Refill
+    2. Link Card
+    4. Check days left
     3. Exit
     """))
     os.system("clear")
     if menu == 1:
-        registration(phone_number, pin)
+        refill()
     elif menu == 2:
-        login()
+        linkcard()
     else:
         print("Goodbye")
         exit()
@@ -77,7 +80,7 @@ def registration(phone_number, pin):
     exit()
 
 
-def login(phone_number):
+def verification(phone_number):
     """
     Accessing the json file to match the number
     entered to the pin
@@ -103,6 +106,16 @@ def login(phone_number):
         pass
 
 
+def login(phone_number, pin):
+    option = int(input("1. Register\n 2. Login\n 3. Exit\n"))
+    os.system("clear")
+    if option == 1:
+        registration(phone_number, pin)
+    elif option == 2:
+        verification(phone_number)
+    return option
+
+
 def linkcard():
     """
     Linking bank card to refill
@@ -115,10 +128,50 @@ def refill():
     """
     Refill to the number at the back of the bus tag
     """
-    print("Bus tag number xxx-xxx-xxxx refill. ")
-    pass
+    tag = input("Enter bus tag number: ")
+    occurrance = input("1. Weekly\n2. Monthly\n3. Termly")
+    if occurrance == 1:
+        weekly = input("Weekly tag is R250. Confirm? (y/n) ")
+        if weekly.islower() == "y":
+            time.sleep(3)
+            print("Card refilled for one week.")
+        else:
+            exit()
+    elif occurrance == 2:
+        weekly = input("Monthly tag is R900. Confirm? (y/n) ")
+        if weekly.islower() == "y":
+            time.sleep(3)
+            print("Card refilled for one month.")
+        else:
+            exit()
+    elif occurrance == 3:
+        weekly = input("Termly tag is R2700. Confirm? (y/n) ")
+        if weekly.islower() == "y":
+            time.sleep(3)
+            print("Card refilled for three months.")
+        else:
+            exit()
+    else:
+        print("Goodbye!")
+        exit()
+
+def run_ussd():
+    """
+    Main function for running the ussd
+    """
+
+    print("Welcome to the Putco Electronic Refill System.\n \n")
+    
+    phone_number = create_num()
+    pin = create_pin()
+
+
+    menu = 0
+    while menu != 3:
+        menu = login(phone_number, pin)
+    os.system("clear")
+    print("See you soon, Goodbye!")
 
 
 if __name__ == '__main__':
-    print("Welcome to the Putco Electronic Refill System.\n \n")
-    create_num()
+    run_ussd()
