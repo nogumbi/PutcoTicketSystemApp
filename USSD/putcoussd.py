@@ -1,4 +1,5 @@
 import json
+import os
 
 # Stores data of the person
 storage_file = open("data.json", "r+")
@@ -19,6 +20,7 @@ def create_num():
         print(f'+27 {phone_num}')
         return (f'+27 {phone_num}')
 
+
 def create_pin():
     """Creates pin for the first time
     that will be connected with the phone
@@ -35,26 +37,71 @@ def create_pin():
     else:
         return pin
 
-def options():
+
+def options(phone_number, pin):
     """
     Options available
     """
-    pass
+    menu = int(input("""Main menu: \n
+    1. Register
+    2. Login
+    3. Exit
+    """))
+    os.system("clear")
+    if menu == 1:
+        registration(phone_number, pin)
+    elif menu == 2:
+        login()
+    else:
+        print("Goodbye")
+        exit()
 
-def registration():
+
+
+def registration(phone_number, pin):
     """
     Process of storing new users details to the data.json
     """
+    dict_['cellnumber'] = phone_number
+    repeat_pin = input("Please re-enter pin: ")
+    while pin != repeat_pin:
+        repeat_pin = ("PIN does not match. Please re-enter pin: ")
+    dict_['pin'] =  pin
+    dict_['linked'] = False
+
+    userInfo = json.dumps(dict_)
+    storage_file.write("")
+    storage_file.write(userInfo)
     print("Registering...")
     print("Successfully registered...")
-    pass
+    exit()
 
-def login():
+
+def login(phone_number):
     """
     Accessing the json file to match the number
     entered to the pin
     """
-    pass
+    try:
+        data = json.load(storage_file)
+        if data['cellnumber'] == phone_number:
+            pinverify = input("Please enter pin: ")
+            os.system("Clear.")
+
+            count = 3
+            while data['pin'] != pinverify:
+                pinverify = input("Incorect pin, please re-enter pin: ")
+                count = count -1
+                if count == 0:
+                    print("Account locked due to security.")
+                    exit()
+                else:
+                    print("Welcome back!")
+                    options()
+                    exit(0)
+    except json.decoder.JSONDecodeError:
+        pass
+
 
 def linkcard():
     """
@@ -62,6 +109,7 @@ def linkcard():
     """
     print("Linking card...")
     pass
+
 
 def refill():
     """
