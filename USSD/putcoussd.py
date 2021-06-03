@@ -40,7 +40,7 @@ def create_pin():
         return pin
 
 
-def options(phone_number, pin):
+def options():
     """
     Options available
     """
@@ -60,12 +60,12 @@ def options(phone_number, pin):
         exit()
 
 
-
-def registration(phone_number, pin):
+def registration(phone_number):
     """
     Process of storing new users details to the data.json
     """
     dict_['cellnumber'] = phone_number
+    pin = create_pin()
     repeat_pin = input("Please re-enter pin: ")
     while pin != repeat_pin:
         repeat_pin = ("PIN does not match. Please re-enter pin: ")
@@ -77,7 +77,7 @@ def registration(phone_number, pin):
     storage_file.write(userInfo)
     print("Registering...")
     print("Successfully registered...")
-    exit()
+    options()
 
 
 def verification(phone_number):
@@ -89,7 +89,7 @@ def verification(phone_number):
         data = json.load(storage_file)
         if data['cellnumber'] == phone_number:
             pinverify = input("Please enter pin: ")
-            os.system("Clear.")
+            os.system("clear.")
 
             count = 3
             while data['pin'] != pinverify:
@@ -106,13 +106,15 @@ def verification(phone_number):
         pass
 
 
-def login(phone_number, pin):
-    option = int(input("1. Register\n 2. Login\n 3. Exit\n"))
+def login(phone_number):
+    option = int(input(" 1. Register\n 2. Login\n 3. Exit\n"))
     os.system("clear")
     if option == 1:
-        registration(phone_number, pin)
+        registration(phone_number)
     elif option == 2:
         verification(phone_number)
+    else:
+        exit()
     return option
 
 
@@ -129,16 +131,16 @@ def refill():
     Refill to the number at the back of the bus tag
     """
     tag = input("Enter bus tag number: ")
-    occurrance = input("1. Weekly\n2. Monthly\n3. Termly")
+    occurrance = input("1. Weekly\n2. Monthly\n3. Termly\n")
     if occurrance == 1:
-        weekly = input("Weekly tag is R250. Confirm? (y/n) ")
+        weekly = input("Weekly tag is R250. Confirm? (y/n) \n")
         if weekly.islower() == "y":
             time.sleep(3)
             print("Card refilled for one week.")
         else:
             exit()
     elif occurrance == 2:
-        weekly = input("Monthly tag is R900. Confirm? (y/n) ")
+        weekly = input("Monthly tag is R900. Confirm? (y/n) \n")
         if weekly.islower() == "y":
             time.sleep(3)
             print("Card refilled for one month.")
@@ -163,12 +165,10 @@ def run_ussd():
     print("Welcome to the Putco Electronic Refill System.\n \n")
     
     phone_number = create_num()
-    pin = create_pin()
-
 
     menu = 0
     while menu != 3:
-        menu = login(phone_number, pin)
+        menu = login(phone_number)
     os.system("clear")
     print("See you soon, Goodbye!")
 
