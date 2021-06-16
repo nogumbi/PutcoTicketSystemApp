@@ -114,7 +114,7 @@ public class putcoTicketingSystem {
             System.out.println("|                                                     |");
             System.out.println("|  Where you get to reload your tag with pure ease    |");
             System.out.println(" ======================================================");
-			System.out.println("#######################################################");
+	    System.out.println("#######################################################");
             System.out.println(" =====================================================");
             System.out.println("|       1. Add a route                                |");
             System.out.println("|       2. Edit a project                             |");
@@ -218,9 +218,9 @@ public class putcoTicketingSystem {
 				for (putcoTag routes :etag) {
 					// put key and value separated by a colon
 					bf1.write("Routes |" + 
-							  "\n Make :"+routes.getEndPoint()+"\n"+
-							  "\n Model :"+routes.getStartPoint()+"\n"+
-							  "\n Top Speed :"+ routes.getTagTerm()+"km/h");
+							  "\n End Point :"+routes.getEndPoint()+"\n"+
+							  "\n Start Point :"+routes.getStartPoint()+"\n"+
+							  "\n Tag Term :"+ routes.getTagTerm()+"km/h");
 					bf1.newLine();
 				}
 				bf1.flush();
