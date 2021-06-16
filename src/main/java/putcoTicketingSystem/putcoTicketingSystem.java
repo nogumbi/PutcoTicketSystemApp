@@ -21,6 +21,9 @@ public class putcoTicketingSystem {
 	 */
 
 		try {
+			/*checks to see if files exists, if not creates them or throws an exception if
+				there is a problem.
+			 */
 			File outputFilePath = new File("src/main/java/files/credentials.json");
 			File createNewRoutesFile = new File("src/main/java/files/routes.json");
 
