@@ -6,18 +6,36 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+
 import java.time.LocalTime; // import the LocalTime class
 
 public class putcoTicketingSystem {
-	final static String outputFilePath = "C:/Users//Lehlohonolo/Desktop/credentials.txt";
-	
-	final static String createNewRoutesFile = "C:/Users//Lehlohonolo/Desktop/routes.txt";
+
+	final static String outputFilePath = "src/main/java/files/credentials.json";
+	final static String createNewRoutesFile = "src/main/java/files/routes.json";
 
 	public static void main(String[] args) {
 	int count = 0;
 	/* create new HashMap,it will store a string key,and string value.
 	 * no duplicate key-value pairs will be stored.
-	 */	
+	 */
+
+		try {
+			File outputFilePath = new File("src/main/java/files/credentials.json");
+			File createNewRoutesFile = new File("src/main/java/files/routes.json");
+
+			if (!outputFilePath.exists() && !outputFilePath.isDirectory() && outputFilePath.createNewFile()) {
+				System.out.println("File created:  " + outputFilePath.getName());
+				System.out.println("File Path:    " + outputFilePath.getAbsolutePath());
+			}
+			if(!createNewRoutesFile.exists() && !createNewRoutesFile.isDirectory() && createNewRoutesFile.createNewFile())
+			{
+				System.out.println("File created:  " + createNewRoutesFile.getName());
+				System.out.println("File Path:    " + createNewRoutesFile.getAbsolutePath());
+			}
+		}catch (Exception e) {
+			System.out.println("An error occured while creating a database file.");
+		}
 	HashMap<String, String> credentials = new HashMap<String, String>();
 	//HashSet<putcoTag> j = new ArrayList<String>();
 	HashSet<putcoTag> etag = new HashSet <putcoTag>();

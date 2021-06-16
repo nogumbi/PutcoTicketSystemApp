@@ -9,5 +9,8 @@
         <module name="putcoApp" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="putcoApp" target="16" />
+    </bytecodeTargetLevel>
   </component>
 </project>
