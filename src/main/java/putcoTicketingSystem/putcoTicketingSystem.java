@@ -6,8 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-import autoDealership3.Vehicles3;
-
 import java.time.LocalTime; // import the LocalTime class
 
 public class putcoTicketingSystem {
