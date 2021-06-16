@@ -2,7 +2,7 @@
 
 ***Putco App***
 
-Electronic ticketing system which will allow putco commuters to refill their bus tag on a mobile banking app.
+Electronic ticketing system which will allow putco commuters to refill their bus tag on a web based application.
 
 
 * You can run the program using the instructions in *To Run* below.
