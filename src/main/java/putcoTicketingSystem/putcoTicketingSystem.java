@@ -39,6 +39,8 @@ public class putcoTicketingSystem {
 		}catch (Exception e) {
 			System.out.println("An error occured while creating a database file.");
 		}
+
+
 	HashMap<String, String> credentials = new HashMap<String, String>();
 	//HashSet<putcoTag> j = new ArrayList<String>();
 	HashSet<putcoTag> etag = new HashSet <putcoTag>();
@@ -239,7 +241,7 @@ public class putcoTicketingSystem {
 					bf1.write("Routes |" + 
 							  "\n End Point :"+routes.getEndPoint()+"\n"+
 							  "\n Start Point :"+routes.getStartPoint()+"\n"+
-							  "\n Tag Term :"+ routes.getTagTerm()+"km/h");
+							  "\n Tag Term :"+ routes.getTagTerm());
 					bf1.newLine();
 				}
 				bf1.flush();

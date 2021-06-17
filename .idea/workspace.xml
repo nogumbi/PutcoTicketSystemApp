@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f77c0766-70e0-4734-859c-e26c9772cdb4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/files/credentials.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/files/credentials.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/files/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/files/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/putcoTicketingSystem/putcoTicketingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/putcoTicketingSystem/putcoTicketingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,5 +101,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
