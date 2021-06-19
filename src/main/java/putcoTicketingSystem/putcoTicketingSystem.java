@@ -4,100 +4,34 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
-
-
-import java.time.LocalTime; // import the LocalTime class
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Scanner;
 
 public class putcoTicketingSystem {
 
 	final static String outputFilePath = "src/main/java/files/credentials.json";
 	final static String createNewRoutesFile = "src/main/java/files/routes.json";
+	private static int input0;
+	private static String userName;
+	private static String passWord;
+	private static HashSet<putcoTag> etag = new HashSet <putcoTag>();
 
 	public static void main(String[] args) {
-	int count = 0;
+
 	/* create new HashMap,it will store a string key,and string value.
 	 * no duplicate key-value pairs will be stored.
 	 */
+		createFiles files = new createFiles();
+		files.create();
 
-		try {
-			/*checks to see if files exists, if not creates them or throws an exception if
-				there is a problem.
-			 */
-			File outputFilePath = new File("src/main/java/files/credentials.json");
-			File createNewRoutesFile = new File("src/main/java/files/routes.json");
+		User user = new User();
+		HashMap<String, String> credentials = user.login();
 
-			if (!outputFilePath.exists() && !outputFilePath.isDirectory() && outputFilePath.createNewFile()) {
-				System.out.println("File created:  " + outputFilePath.getName());
-				System.out.println("File Path:    " + outputFilePath.getAbsolutePath());
-			}
-			if(!createNewRoutesFile.exists() && !createNewRoutesFile.isDirectory() && createNewRoutesFile.createNewFile())
-			{
-				System.out.println("File created:  " + createNewRoutesFile.getName());
-				System.out.println("File Path:    " + createNewRoutesFile.getAbsolutePath());
-			}
-		}catch (Exception e) {
-			System.out.println("An error occured while creating a database file.");
-		}
-
-
-	HashMap<String, String> credentials = new HashMap<String, String>();
-	//HashSet<putcoTag> j = new ArrayList<String>();
-	HashSet<putcoTag> etag = new HashSet <putcoTag>();
-	while(true) {
-		//Outer array for adding values to the first list
-		Scanner input0 = new Scanner(System.in);
-		System.out.println("Enter your bus tag ID\n");
-		String userName = input0.nextLine();
-		
-		System.out.println("password:");
-		Scanner input2 = new Scanner(System.in);
-		String passWord = input2.nextLine();
-
-		if (credentials.containsKey(userName) == true && credentials.containsValue(passWord) == true) {
-			System.out.println(userName +" has successfully logged in.");
-		}
-		else if(credentials.containsKey(userName) == true && credentials.containsValue(passWord) == false) {
-    		count +=1;
-    		System.out.println("Incorrect password.");
-    	
-    		if(count>3) {
-    			System.out.println(userName +"'s" + " account has been blocked");
-    			break;
-    		}
-    	}
-	
-    	else if(credentials.containsKey(userName) == false && credentials.containsValue(passWord) == false){
-    	
-    		System.out.println("There are no account details for username:"+userName +" password :" +passWord+" if you wish to register new account details,please enter privilaged mode?");
-    	
-    		Scanner input8 = new Scanner(System.in);
-    		System.out.println("Enter root username");
-    		String rootUserName = input8.nextLine();
- 
-    		Scanner input9 = new Scanner(System.in);
-    		System.out.println("Enter root password?");
-    		String rootPassword = input9.nextLine();
-		
-    		if(rootUserName.equals("admin")&&rootPassword.equals("admin1")) {
-			
-    			credentials.put(userName,passWord);
-    			System.out.println("The credentials you entered do not exist,new user registered.");
-    		}
-    		else{
-    			System.out.println("The credentials you entered are incorrect,bye sucker!");
-    			break;
-    		}
-    		if(userName.length() > 0 || passWord.length() > 0){
-    			credentials.put(userName, passWord);
-    		}
-    		// key-value pairs
-    	}
-		// new file object
+		//new file object
 		File file = new File(outputFilePath);
-
 		BufferedWriter bf = null;
-
 		try {
 
 			// create new BufferedWriter for the output file
@@ -138,7 +72,7 @@ public class putcoTicketingSystem {
 	    System.out.println("#######################################################");
             System.out.println(" =====================================================");
             System.out.println("|       1. Add a route                                |");
-            System.out.println("|       2. Edit a project                             |");
+            System.out.println("|       2. Edit a route                             |");
             System.out.println("|       3. Delete a route                             |");
             System.out.println("|       4. Display routes in the program              |");
             System.out.println("|       5. Exit the program                           |"); 
@@ -146,8 +80,9 @@ public class putcoTicketingSystem {
             System.out.println(" =====================================================");
             System.out.println("");
             System.out.print("Selection: ");
-            
-    		int choice =input0.nextInt();
+
+			Scanner input0 = new Scanner(System.in);
+    		int choice = input0.nextInt();
 			
     		switch(choice) {
     		
@@ -272,7 +207,7 @@ public class putcoTicketingSystem {
 
 	}
    }
-  }
+
   public static HashSet<putcoTag> removeElem(HashSet<putcoTag> tag,String target){
 	  
 	  int targetIndex = 0;

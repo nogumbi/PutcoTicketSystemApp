@@ -13,4 +13,9 @@
       <module name="putcoApp" target="16" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="putcoApp" options="--add-exports java.base/jdk.internal.logger=ALL-UNNAMED" />
+    </option>
+  </component>
 </project>
