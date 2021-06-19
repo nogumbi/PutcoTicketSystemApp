@@ -1,7 +1,8 @@
 package tests;
-import putcoTicketingSystem.calculateDistance;
 
 import org.junit.jupiter.api.Test;
+import putcoTicketingSystem.calculateDistance;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DistanceTest

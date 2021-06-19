@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f77c0766-70e0-4734-859c-e26c9772cdb4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/DistanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/DistanceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/putcoApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/putcoApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/DistanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/DistanceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,9 +50,9 @@
       <recent name="putcoTicketingSystem" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PasswordValidTest.passValidTest">
-    <configuration name="configFiles" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="putcoTicketingSystem.configFiles" />
+  <component name="RunManager" selected="JUnit.DistanceTest">
+    <configuration name="putcoTicketingSystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="putcoTicketingSystem.putcoTicketingSystem" />
       <module name="putcoApp" />
       <extension name="coverage">
         <pattern>
@@ -62,8 +64,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="putcoTicketingSystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="putcoTicketingSystem.putcoTicketingSystem" />
+    <configuration name="DistanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="putcoApp" />
       <extension name="coverage">
         <pattern>
@@ -71,6 +72,9 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.DistanceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -107,11 +111,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DistanceTest" />
         <item itemvalue="JUnit.PasswordValidTest.passValidTest" />
         <item itemvalue="JUnit.UserTest.usernameTest" />
         <item itemvalue="JUnit.DistanceTest.calculateDistance" />
         <item itemvalue="Application.putcoTicketingSystem" />
-        <item itemvalue="Application.configFiles" />
       </list>
     </recent_temporary>
   </component>
