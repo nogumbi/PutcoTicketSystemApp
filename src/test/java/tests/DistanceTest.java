@@ -1,3 +1,4 @@
+package tests;
 import putcoTicketingSystem.calculateDistance;
 
 import org.junit.jupiter.api.Test;

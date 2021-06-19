@@ -7,6 +7,7 @@
     <list default="true" id="f77c0766-70e0-4734-859c-e26c9772cdb4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/DistanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/DistanceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +54,7 @@
       <module name="putcoApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="putcoTicketingSystem.*" />
+          <option name="PATTERN" value="tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -66,7 +67,7 @@
       <module name="putcoApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="putcoTicketingSystem.*" />
+          <option name="PATTERN" value="tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -86,8 +87,8 @@
     </configuration>
     <configuration name="PasswordValidTest.passValidTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="putcoApp" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PasswordValidTest" />
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.PasswordValidTest" />
       <option name="METHOD_NAME" value="passValidTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
