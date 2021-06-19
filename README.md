@@ -9,14 +9,18 @@ Electronic ticketing system which will allow putco commuters to refill their bus
 * You can test technical correctness by running the unit tests as in the section *To Test* below.
 
 
-**Build, Test & Run**
+****Build, Test & Run****
+
+***To install Intellij and Maven***
+
+**run the setup.sh script**
 
 You may use your desired IDE to run your code and tests, but alternatively you can use the Maven build tool:
 
 First ensure you are in the root directory of the project
 
-To compile your code, run: mvn compile
+* To compile your code, run: *mvn compile*
 
-To run the tests: mvn test
+* To run the tests: *mvn test*
 
-To run your application: mvn compile exec:java
+* To run your application: *mvn compile exec:java*
