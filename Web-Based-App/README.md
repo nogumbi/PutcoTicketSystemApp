@@ -2,7 +2,7 @@
 
 ***Putco Web Based App***
 
-Electronic ticketing system which will allow putco commuters to refill their bus tag on a web based application.
+Electronic ticketing system which will allow putco commuters to refill their bus tag on a web based application and USSD.
 
 
 * You can run the program using the instructions in *To Run* below.
