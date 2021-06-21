@@ -43,10 +43,12 @@ public class putcoTicketingSystem {
 			// iterate map entries
 			for (Map.Entry<String, String> entry :credentials.entrySet()) 
 			{
+				System.out.println("Writing...");
 				// put key and value separated by a colon
 				bf.write("username :" + entry.getKey() + " \npassword :" + entry.getValue());
 				// new line
 				bf.newLine();
+				System.out.println("DOne writing...");
 			}
 			System.out.println("wrote to file");
 			bf.flush();
