@@ -1,6 +1,6 @@
 # Putco Ticketing System
 
-***Putco App***
+***Putco Web Based App***
 
 Electronic ticketing system which will allow putco commuters to refill their bus tag on a web based application.
 
@@ -24,3 +24,13 @@ First ensure you are in the root directory of the project
 * To run the tests: *mvn test*
 
 * To run your application: *mvn compile exec:java*
+
+### To Run the USSD
+
+* `python3 putcoussd.py`
+* follow the input prompts to get the desired output
+
+### To Test
+
+* To run all the unittests: `python3 -m unittest test_putco.py`
+* To run a specific step's unittest, e.g step *1*: `python3 -m unittest test_putco.MyTestCase.numberofdigits`
