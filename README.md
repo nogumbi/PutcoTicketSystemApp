@@ -27,6 +27,7 @@ First ensure you are in the root directory of the project
 
 ### To Run the USSD
 
+* cd USSD
 * `python3 putcoussd.py`
 * follow the input prompts to get the desired output
 
