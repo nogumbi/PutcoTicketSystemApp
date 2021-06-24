@@ -1,6 +1,8 @@
 
+import routeprices
 import unittest
 import putcoussd
+import routepositions
 from unittest.mock import patch
 from io import StringIO
 
@@ -19,6 +21,11 @@ class Test(unittest.TestCase):
         code = putcoussd.create_pin()
         self.assertEqual(len(code), 5)
         self.assertEqual(code, "11245")
+
+    def test_positions(self):
+        position = 1234
+        self.assertEqual(1234, 1234)
+
 
 if __name__ == '__main__':
     unittest.main()

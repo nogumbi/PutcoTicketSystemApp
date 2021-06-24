@@ -2,11 +2,10 @@ import json
 import os
 import time
 import sys
+import routeprices
 
 # Stores data of the person
 storage_file = open("data.json", "r+")
-
-
 dict_ = {}
 
 
@@ -17,7 +16,7 @@ def create_num():
     """
     bus_num = input("Please enter your bus tag number: ")
     if len(bus_num) != 9 or not bus_num.isdigit():
-        print("Invalid Phone Number.\n")
+        print("Invalid Bus Tag Number.\n")
         return create_num()
     else:
         return (bus_num)
@@ -45,10 +44,10 @@ def options():
     """
     Options available
     """
-    menu = int(input("""Main menu: \n
+    menu = int(input("""Main menu:\n
     1. Refill
     2. Link Card
-    3. Exit
+    3. Main Menu
     """))
     os.system("clear")
     if menu == 1:
@@ -58,14 +57,20 @@ def options():
 
 
 
-def registration(bus_num):
+def registration():
     """
     Process of storing new users details to the data.json
     """
     print("You are not registered. ")
+    bus_num = create_num()
     dict_['tag_num'] = bus_num
     pin = create_pin()
-    dict_['pin'] =  pin
+    pinverify2 = input("Please re-enter pin: ")
+    if pin == pinverify2:
+        dict_['pin'] =  pin
+    else:
+        print("PIN does not match")
+        pinverify = input("Please re-enter pin: ")
 
     userInfo = json.dumps(dict_)
     storage_file.write("")
@@ -75,7 +80,7 @@ def registration(bus_num):
     options()
 
 
-def verification(bus_num):
+def verification():
     """
     Accessing the json file to match the number
     entered to the pin
@@ -83,6 +88,7 @@ def verification(bus_num):
     # global storage_file
     with open('data.json') as storage_file:
         data = json.load(storage_file)
+    bus_num = create_num()
     if data["tag_num"] == bus_num:
         pinverify = input("Please enter pin: ")
         # os.system("clear.")
@@ -98,17 +104,17 @@ def verification(bus_num):
                 print("Welcome back!")
                 options()
         else:
-            print("\nID not associated with Phone Number\n\nPlease try again..")
+            print("\nPIN not associated with Bus Tag Number\n\nPlease try again..")
 
 
 
-def login(bus_num):
+def login():
     option = int(input("1. Register\n2. Login\n3. Exit\n"))
     os.system("clear")
     if option == 1:
-        registration(bus_num)
+        registration()
     elif option == 2:
-        verification(bus_num)
+        verification()
     else:
         exit()
         
@@ -129,31 +135,36 @@ def refill():
     """
     starting_point = input("Enter starting point: ")
     ending_point = input("Enter ending point: ")
+    amount = routeprices.amount
     
     dict_["starting_point"] = starting_point
     dict_["ending_point"] = ending_point
-
+    os.system("clear")
     occurrance = int(input("1. Weekly\n2. Monthly\n3. Termly\n"))
     if occurrance == 1:
-        weekly = input("Weekly tag is R250. Confirm? (y/n) \n")
+        routeprices.weekly(amount)
+        weekly = input("Confirm? (y/n) \n")
         if weekly == "y":
             print("Card refilled for one week.")
         else:
             refill()
     elif occurrance == 2:
-        monthly = input("Monthly tag is R900. Confirm? (y/n) \n").islower()
+        routeprices.monthly(amount)
+        monthly = input("Confirm? (y/n) \n")
         if monthly == "y":
             print("Card refilled for one month.")
         else:
             refill()
     elif occurrance == 3:
-        termly = input("Termly tag is R2700. Confirm? (y/n) ").islower()
+        routeprices.termly(amount)
+        termly = input("Confirm? (y/n) \n")
         if termly == "y":
             print("Card refilled for three months.")
         else:
             refill()
-    else:
-        options()
+    
+    os.system("clear")
+    options()
 
     userInfo = json.dumps(dict_)
     storage_file.write("\n")
@@ -167,11 +178,11 @@ def run_ussd():
 
     print("Welcome to the Putco Electronic Refill System.\n \n")
     
-    bus_num = create_num()
+    
     
     menu = 0
     while menu != 3:
-        menu = login(bus_num)
+        menu = login()
     os.system("clear")
     print("See you soon, Goodbye!")
 
