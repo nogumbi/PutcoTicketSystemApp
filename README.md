@@ -11,7 +11,7 @@ Electronic ticketing system which will allow putco commuters to refill their bus
 
 ### Build, Test & Run Java Project
 
-***To install Intellij and Maven***
+To install Intellij and Maven
 
 **run the setup.sh script**
 
