@@ -11,152 +11,221 @@ import java.util.Scanner;
 
 public class putcoTicketingSystem {
 
-	final static String outputFilePath = "src/main/java/files/credentials.json";
-	final static String createNewRoutesFile = "src/main/java/files/routes.json";
-	private static int input0;
-	private static String userName;
-	private static String passWord;
-	private static HashSet<putcoTag> etag = new HashSet <putcoTag>();
-	
-	private static HashMap<String, String> credentials;
-
 	public static void main(String[] args) 
 	{
+		String outputFilePath = "src/main/java/files/credentials.json";
+		String createNewRoutesFile = "src/main/java/files/routes.json";
+		/* create 2 new HashMaps,that will store a string key,and string value.
+		 * no duplicate key-value pairs will be stored.
+		 */
+		HashMap<String, String> credentials = new HashMap<String, String>();
+		HashSet<putcoTag> etag = new HashSet <putcoTag>();
 
-	/* create new HashMap,it will store a string key,and string value.
-	 * no duplicate key-value pairs will be stored.
-	 */
 		createFiles files = new createFiles();
 		files.create();
+		/*
+		 * this count variable will check how many
+		 * times an incorrect password is entered.
+		 */
+		int count = 0;
 		while(true)
 		{
-			User user = new User();
-			credentials = user.login();
-		//new file object
-		File file = new File(outputFilePath);
-		BufferedWriter bf = null;
-		try 
-		{
-			System.out.println("I got here");
-			// create new BufferedWriter for the output file
-			bf = new BufferedWriter(new FileWriter(file));
-			// iterate map entries
-			for (Map.Entry<String, String> entry :credentials.entrySet()) 
+			//Outer array for adding values to the first list
+			Scanner input0 = new Scanner(System.in);
+			System.out.println("Enter your bus tag ID\n");
+			String userName = input0.nextLine();
+
+			System.out.println("password:");
+			Scanner input1 = new Scanner(System.in);
+			String passWord = input1.nextLine();
+
+			if (credentials.containsKey(userName) == true && credentials.containsValue(passWord) == true)
 			{
-				System.out.println("Writing...");
-				// put key and value separated by a colon
-				bf.write("username :" + entry.getKey() + " \npassword :" + entry.getValue());
-				// new line
-				bf.newLine();
-				System.out.println("DOne writing...");
+				System.out.println(userName +" has successfully logged in.");
 			}
-			System.out.println("wrote to file");
-			bf.flush();
+			else if(credentials.containsKey(userName) == true && credentials.containsValue(passWord) == false)
+			{
+				count +=1;
+				System.out.println("Incorrect password.");
+
+				if(count>3)
+				{
+					System.out.println(userName +"'s" + " account has been blocked");
+					break;
+				}
 			}
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		finally {
+			else if(credentials.containsKey(userName) == false && credentials.containsValue(passWord) == false)
+			{
+
+				System.out.println("There are no account details for username:"+userName +" password :" +passWord+" if you wish to register new account details,please enter privilaged mode?");
+
+				Scanner input2 = new Scanner(System.in);
+				System.out.println("Enter root username");
+				String rootUserName = input2.nextLine();
+
+				Scanner input3 = new Scanner(System.in);
+				System.out.println("Enter root password?");
+				String rootPassword = input3.nextLine();
+
+				if(rootUserName.equals("admin")&&rootPassword.equals("admin1"))
+				{
+
+					credentials.put(userName,passWord);
+					System.out.println("The credentials you entered do not exist,new user registered.");
+				}
+				else
+				{
+					System.out.println("The credentials you entered are incorrect, Goodbye!");
+					break;
+				}
+				if(userName.length() > 0 || passWord.length() > 0)
+				{
+					credentials.put(userName, passWord);
+				}
+				// key-value pairs
+			}
+			/* exit the outer while loop and write the
+			 * data to the hash-map.
+			 */
+			// new file object
+			File file = new File(outputFilePath);
+
+			BufferedWriter bf = null;
+
 			try {
-			// always close the writer
-			bf.close();
+				// create new BufferedWriter for the output file
+				bf = new BufferedWriter(new FileWriter(file));
+				// iterate map entries
+				for (Map.Entry<String, String> entry :credentials.entrySet()) {
+					// put key and value separated by a colon
+					bf.write("username : " + entry.getKey() + "\npassword : " + entry.getValue());
+					// new line
+					bf.newLine();
+				}
+				//add the hash-map to the file.
+				bf.flush();
 			}
-			catch (Exception e) {
+			catch (IOException e) {
+				e.printStackTrace();
 			}
-		}
-	
-		System.out.println("got out of file");
-		
-		
-				System.out.println("Inside putco menu");
-				putcoMenu menu = new putcoMenu();
-				menu.mainMenu();
+			finally {
+				try {
+					// always close the writer
+					bf.close();
+				}
+				catch (Exception e) {
+				}
+			}
+			while(credentials.containsKey(userName) == true && credentials.containsValue(passWord) == true) {
+				System.out.println(" ======================================================\n"
+						+"|       Welcome to the Putco Ticketing System         |\n"
+						+"|                                                     |\n"
+						+"|                                                     |\n"
+						+"|                                                     |\n"
+						+"|                                                     |\n"
+						+"|  Where you get to reload your tag with pure ease    |\n"
+						+" ======================================================\n"
+						+"#######################################################\n"
+						+" =====================================================\n"
+						+"|       1. Add a route                                |\n"
+						+"|       2. Edit a route                               |\n"
+						+"|       3. Delete a route                             |\n"
+						+"|       4. Display routes in the program              |\n"
+						+"|       5. Exit the program                           |\n"
+						+"|  *Type a number to make a selection*                |\n"
+						+" =====================================================\n"
+						+"\n"
+						+"Selection: ");
 
-				Scanner input0 = new Scanner(System.in);
-				int choice = input0.nextInt();
-				
+				int choice =input0.nextInt();
+
 				switch(choice) {
-				
-				case 1:    			
-					Scanner input4 = new Scanner(System.in);
-					System.out.println("Enter your pick-up point.");
-					String pickupPoint = input4.nextLine();
-				
-					Scanner input5 = new Scanner(System.in);
-					System.out.println("Enter your drop-off point.");
-					String endPoint = input5.nextLine();
-				
-					Scanner input6 = new Scanner(System.in);
-					System.out.println("Enter your tag term 'Weekly,Monthly,Termly'");
-					String tagTerm = input6.nextLine();
-					
-					//etag.add(new putcoTag(userName,pickupPoint, endPoint, tagTerm));
-				
-				//System.out.println("\n"+userName+",please wait while we add your car to the store..."+"\n");
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					etag.add(new putcoTag(userName,pickupPoint, endPoint, tagTerm));
 
-					System.out.println("Your route to " +endPoint+",has been added to the store.");
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				break;
-				case 2:
-				System.out.println("Editing...");
-				break;
-				case 3:
-				System.out.println("Deleting...");
-				//System.out.println(etag);
-				
-				break;
-				case 4:
-					
+					case 1:
+						Scanner input4 = new Scanner(System.in);
+						System.out.println("Enter your pick-up point.");
+						String pickupPoint = input4.nextLine();
 
-				System.out.println("Displaying all routes");
-				
-				/*Only show the user the routes they entered.
-				* nothing more,nothing less..
-				*/
-				System.out.println(etag);
-				
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+						/*
+						 * Put a switch case statement here so the user has three possible
+						 * pickup points.
+						 */
+
+						Scanner input5 = new Scanner(System.in);
+						System.out.println("Enter your drop-off point.");
+						String endPoint = input5.nextLine();
+
+						/*
+						 * Put a switch case statement here so the user has three possible
+						 * end points.
+						 */
+						Scanner input6 = new Scanner(System.in);
+						System.out.println("Enter your tag term 'Weekly,Monthly,Termly'");
+						String tagTerm = input6.nextLine();
+						/*
+						 * Put a switch case statement here so the user has three possible
+						 * tag types.
+						 */
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
+						etag.add(new putcoTag(userName, endPoint,pickupPoint, tagTerm));
+
+						System.out.println("Your route to " +endPoint+", has been added to the store.");
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						break;
+					case 2:
+						System.out.println("Editing...");
+						break;
+					case 3:
+						System.out.println("Deleting...");
+						System.out.println("Which route are you removing? ");
+						System.out.println("end point to remove : ");
+
+						Scanner input10 = new Scanner(System.in);
+						String endPoint1 = input10.nextLine();
+
+						etag = removeElem(etag,endPoint1);
+
+						break;
+					case 4:
+						System.out.println("Displaying all routes");
+						printRoutes(etag, (p) -> p.getUserName().equals(userName));
+						/*
+						 * Only show the user the routes they entered.
+						 * nothing more,nothing less..
+						 */
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						break;
+					case 5:
+						System.out.println("Signing out");
+						System.out.println(userName +" thank you for using this app.Goodbye");
+						System.out.println("\n"+"Signing you out..."+"\n");
+						System.out.println("Routes added\n");
+						System.out.println(etag);
+						System.out.println("Session terminated.\n");
+
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+
+						break;
+					default:
+						System.out.println("Not a valid option,try again"	);
+
 				}
-				break;
-				case 5:
-				System.out.println("Signing out");
-				System.out.println(userName +" thank you for using this app.Goodbye");
-				System.out.println("\n"+"Signing you out..."+"\n");
-				System.out.println("Routes added\n");
-				System.out.println(etag);
-				System.out.println("Session terminated.\n");
-				
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				break;
-				default:
-				System.out.println("Not a valid option,try again"	);
-				
-				
-				}   
-				// new file object
 				File file1 = new File(createNewRoutesFile);
 				BufferedWriter bf1 = null;
 				try {
@@ -165,51 +234,44 @@ public class putcoTicketingSystem {
 					// iterate map entries
 					for (putcoTag routes :etag) {
 						// put key and value separated by a colon
-						bf1.write("Routes |" + 
-								"\n End Point :"+routes.getEndPoint()+"\n"+
+						bf1.write("Routes |\n" +
 								"\n Start Point :"+routes.getStartPoint()+"\n"+
+								"\n End Point :"+routes.getEndPoint()+"\n"+
 								"\n Tag Term :"+ routes.getTagTerm());
 						bf1.newLine();
 					}
 					bf1.flush();
-					}
+				}
 				catch (IOException e) {
 					e.printStackTrace();
 				}
 				finally {
 					try {
-					// always close the writer
-					bf1.close();
+						// always close the writer
+						bf1.close();
 					}
 					catch (Exception e) {
 					}
-				}	
-				System.out.println("Would you like to remove a route?\n");
-				Scanner input40 = new Scanner(System.in);
-				String a = input40.nextLine();
-			if(a.equals("yes")) {
-				System.out.println("Which route are we going to delete?:");
-				Scanner input50 = new Scanner(System.in);
-				String z = input50.nextLine();
-				etag = removeElem(etag,z);
-			}
-			if (a.contentEquals("no")) {
-				// break;
-			}
-		}
-	
-	}
-	public static HashSet<putcoTag> removeElem(HashSet<putcoTag> tag,String target){
-		
-		int targetIndex = 0;
-		for(Object element : tag) {
-			targetIndex++;
-			if(element.equals(target)) {
+				}
 				break;
 			}
 		}
-		targetIndex -=1;
-		tag.remove(targetIndex);
+	}
+	public static HashSet<putcoTag> removeElem(HashSet<putcoTag> tag,String target){
+
+		for(putcoTag element : tag) {
+			if(element.getEndPoint().equals(target)) {
+				tag.remove(element);
+				break;
+			}
+		}
 		return tag;
-  }
+	}
+	public static void printRoutes(HashSet<putcoTag> etag,routesCondition condition) {
+		for(putcoTag p:etag) {
+			if(condition.test(p)) {
+				p.printRoutes();
+			}
+		}
+	}
 }

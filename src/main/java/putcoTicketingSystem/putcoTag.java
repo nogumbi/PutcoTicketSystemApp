@@ -1,62 +1,42 @@
 package putcoTicketingSystem;
 
 public class putcoTag {
-
 	private String userName;
 	private String endPoint;
 	private String startPoint;
 	private String tagTerm;
-	public putcoTag(String userName,String endPoint, String startPoint, String tagTerm) {
+
+	public putcoTag(String userName, String endPoint, String startPoint, String tagTerm) {
 		super();
 		this.userName = userName;
 		this.endPoint = endPoint;
 		this.startPoint = startPoint;
 		this.tagTerm = tagTerm;
 	}
-	
 	public String getUserName() {
 		return userName;
 	}
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
 	public String getEndPoint() {
 		return endPoint;
 	}
-
 	public void setEndPoint(String endPoint) {
 		this.endPoint = endPoint;
 	}
-
 	public String getStartPoint() {
 		return startPoint;
 	}
-
 	public void setStartPoint(String startPoint) {
 		this.startPoint = startPoint;
 	}
-
 	public String getTagTerm() {
 		return tagTerm;
 	}
-
 	public void setTagTerm(String tagTerm) {
 		this.tagTerm = tagTerm;
 	}
-
-	@Override
-	public String toString() {
-		return "\n"
-				+ "username :" + userName +"\n"
-				+ "endPoint :" + endPoint +"\n"
-				+ "startPoint :" + startPoint +"\n"
-				+ "tagTerm :" + tagTerm +"\n";
-	
-		
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,12 +47,13 @@ public class putcoTag {
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!(obj instanceof putcoTag))
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
 			return false;
 		putcoTag other = (putcoTag) obj;
 		if (endPoint == null) {
@@ -96,5 +77,16 @@ public class putcoTag {
 		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "\n"
+				+"User Name :"+ userName +"\n"+
+				"End Point :" + endPoint +"\n" +
+				"Start Point :"+ startPoint +"\n"+
+				"Tag Term :"+ tagTerm ;
+	}
+	public void printRoutes() {
+		System.out.println(this);
 	}
 }
