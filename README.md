@@ -9,7 +9,7 @@ Electronic ticketing system which will allow putco commuters to refill their bus
 * You can test technical correctness by running the unit tests as in the section *To Test* below.
 
 
-****Build, Test & Run****
+### Build, Test & Run Java Project
 
 ***To install Intellij and Maven***
 
